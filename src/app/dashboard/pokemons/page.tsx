@@ -13,6 +13,8 @@ const getPokemons = async ( limit = 150, offset = 0):Promise<SimplePokemon[]> =>
     name: pokemon.name,
   }));
 
+  //throw new Error('Error fetching pokemons');
+
   return pokemons;
 };
 

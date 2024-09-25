@@ -1,7 +1,6 @@
-import Image from 'next/image';
-import { PokemonResponse } from '../../pokemons/interfaces/index';
-import { SimplePokemon } from '../../pokemons/interfaces/index';
-import { PokemonCard } from '../../pokemons/components/PokemonCard';
+import { PokemonResponse } from '@interfaces/index';
+import { SimplePokemon } from '@interfaces/index';
+import { PokemonCard } from '@components/PokemonCard';
 
 const getPokemons = async ( limit = 150, offset = 0):Promise<SimplePokemon[]> => {
   const response = await fetch(
@@ -25,7 +24,7 @@ export default async function PokemonsPage() {
   return (
     <div className="flex flex-wrap">
       {Array.isArray(pokemons) && pokemons.map(pokemon => (
-        <PokemonCard id={pokemon.id.toString()} name={pokemon.name} />
+        <PokemonCard key={pokemon.id} id={pokemon.id.toString()} name={pokemon.name} />
       ))}
     </div>
   );

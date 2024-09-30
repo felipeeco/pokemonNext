@@ -2,13 +2,13 @@ import { SimplePokemon } from '@interfaces/index';
 
 interface Props {
   params: {
-    id: string;
+    name: string;
   };
 }
 
-const getPokemon = async (id: string): Promise<SimplePokemon> => {
+const getPokemon = async (name: string): Promise<SimplePokemon> => {
   const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${id}`, {
+    `https://pokeapi.co/api/v2/pokemon/${name}`, {
       cache: 'force-cache'
     }
   );
@@ -16,33 +16,21 @@ const getPokemon = async (id: string): Promise<SimplePokemon> => {
   return data;
 };
 
-// Función que devuelve tanto los metadatos como los datos del Pokémon
-const getPokemonData = async (id: string) => {
-  const pokemon = await getPokemon(id);
-  
-  const metadata = {
+export async function generateMetadata({ params }: Props) {
+  const pokemon = await getPokemon(params.name);
+  return {
     title: `${pokemon.id} - ${pokemon.name}`
   };
-
-  return { pokemon, metadata };
-};
-
-// Obtener metadatos utilizando la misma consulta
-export async function generateMetadata({ params }: Props) {
-  const { metadata } = await getPokemonData(params.id);
-  return metadata;
 }
 
-// Usar los datos cacheados en la página
 export default async function PokemonDetailPage({ params }: Props) {
-  const { pokemon } = await getPokemonData(params.id);
-
+  const pokemon = await getPokemon(params.name);
   return (
     <div className="mx-auto mt-2 w-60">
       <div className="bg-white rounded overflow-hidden shadow-lg">
         <div className="flex flex-col items-center p-6 bg-gray-800 border-b">
           <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${params.id}.png`}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
             alt={pokemon.name}
             className="mx-auto"
           />

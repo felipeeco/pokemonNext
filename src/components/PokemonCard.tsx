@@ -10,7 +10,7 @@ export function PokemonCard ({ id, name }: props) {
   return (
   <div className="mx-auto mt-2 w-60">
     <div className="bg-white rounded overflow-hidden shadow-lg">
-      <Link href={`/dashboard/pokemon/${id}`}>
+      <Link href={`/dashboard/pokemon/${name}`}>
         <div className="flex flex-col items-center p-6 bg-gray-800 border-b cursor-pointer">
           <Image
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}

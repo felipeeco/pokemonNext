@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { IoLogoReact,  IoCalculator, IoAccessibility } from 'react-icons/io5';
+import { IoLogoReact,  IoCalculator, IoAccessibility, IoHeartOutline } from 'react-icons/io5';
 import { SideBarComponent } from './SideBar';
 
 const menuItems = [
@@ -20,7 +20,13 @@ const menuItems = [
     icon: <IoAccessibility size={40} />,
     title: 'Pokemons',
     subTitle: 'Estatic generation'
-  }
+  },
+  {
+    path: '/dashboard/favorites',
+    icon: <IoHeartOutline size={40} />,
+    title: 'FP',
+    subTitle: 'Favorites pokemons'
+  },
 ];
 
 export function MenuComponent() {

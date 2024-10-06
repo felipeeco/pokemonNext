@@ -1,4 +1,4 @@
-import { MenuComponent } from '../../components/Menu';
+import { MenuComponent } from '@components/index';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -8,6 +8,15 @@ interface Props {
   value?: number;
 }
 
+interface CounterResponse {
+  count: number;
+}
+
+const getApiCounter = async ():Promise<CounterResponse> => {
+  const response = await fetch('/api/counter');
+  const data = await response.json();
+  return data;
+}
 
 export const CartCounter = ({value = 0} : Props) => {
 
@@ -15,8 +24,8 @@ export const CartCounter = ({value = 0} : Props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(initCounterState(value));
-  }, [dispatch, value]);
+    getApiCounter().then(({count}) => dispatch(initCounterState(count)))
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">

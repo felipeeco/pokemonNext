@@ -4,7 +4,7 @@ import { SideBarComponent } from './SideBar';
 
 const menuItems = [
   {
-    path: '/',
+    path: '/dashboard',
     icon: <IoLogoReact size={40} />,
     title: 'Home',
     subTitle: 'Home'

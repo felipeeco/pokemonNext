@@ -22,7 +22,7 @@ const menuItems = [
     subTitle: 'Estatic generation'
   },
   {
-    path: '/dashboard/favorites',
+    path: '/dashboard/favorites-pokemons',
     icon: <IoHeartOutline size={40} />,
     title: 'FP',
     subTitle: 'Favorites pokemons'

@@ -24,7 +24,7 @@ export default async function PokemonsPage() {
   return (
     <div className="flex flex-wrap">
       {Array.isArray(pokemons) && pokemons.map(pokemon => (
-        <PokemonCard key={pokemon.id} id={pokemon.id.toString()} name={pokemon.name} />
+        <PokemonCard key={pokemon.id} pokemon={pokemon} />
       ))}
     </div>
   );

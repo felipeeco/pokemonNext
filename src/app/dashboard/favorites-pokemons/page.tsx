@@ -24,10 +24,16 @@ export default function FavoritesPokemonsPage() {
 
   return (
     <div className="flex flex-wrap">
-      {Array.isArray(pokemons) && pokemons.map(pokemon => {
-        const isFavorite = favoritePokemons[pokemon.id];
-        if (isFavorite) return <PokemonCard key={pokemon.id} pokemon={pokemon} />
-      })}
+      {
+        Array.isArray(pokemons) && pokemons.map(pokemon => {
+          const isFavorite = favoritePokemons[pokemon.id];
+          if (isFavorite) return <PokemonCard key={pokemon.id} pokemon={pokemon} />
+        })
+      }
+      {
+        Object.keys(favoritePokemons).length === 0 && 
+        <p className="mx-auto mt-4 text-center text-3xl">You have no favorite pokemons</p>
+      }
     </div>
   );
 }

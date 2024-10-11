@@ -9,7 +9,7 @@ export const store = configureStore({
     counter: counterSlice,
     pokemons: pokemonSlice,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(localStorageMiddleware),
+  //middleware: getDefaultMiddleware => getDefaultMiddleware().concat(localStorageMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

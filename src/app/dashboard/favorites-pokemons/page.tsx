@@ -6,9 +6,9 @@ import { SimplePokemon } from '@interfaces/index';
 import { PokemonCard } from '@components/PokemonCard';
 
 export default function FavoritesPokemonsPage() {
-
   const [pokemons, setPokemons] = useState<SimplePokemon[]>([]);
-  const favoritePokemons = useAppSelector(state => state.pokemons);
+  const [loading, setLoading] = useState(true);
+  const favoritePokemons = useAppSelector(state => state.pokemons.favorites);
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=150&offset=0')
@@ -19,15 +19,20 @@ export default function FavoritesPokemonsPage() {
           name: pokemon.name,
         }));
         setPokemons(mappedPokemons);
+        setLoading(false); // Set loading to false once data is fetched
       });
   }, []);
+
+  if (loading) {
+    return <p className="mx-auto mt-4 text-center text-3xl">Loading favorite pokemons...</p>;
+  }
 
   return (
     <div className="flex flex-wrap">
       {
         Array.isArray(pokemons) && pokemons.map(pokemon => {
           const isFavorite = favoritePokemons[pokemon.id];
-          if (isFavorite) return <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          return isFavorite ? <PokemonCard key={pokemon.id} pokemon={pokemon} /> : null;
         })
       }
       {

@@ -1,6 +1,6 @@
-import { Middleware, PayloadAction } from '@reduxjs/toolkit';
+import { Middleware } from '@reduxjs/toolkit';
 
-export const localStorageMiddleware: Middleware = (storeAPI) => (next) => (action: any) => {
+export const localStorageMiddleware: Middleware = storeAPI => next => (action: any) => {
   next(action);
   if(action.type === 'pokemonsState/toggleFavorite') {
     const state = storeAPI.getState();

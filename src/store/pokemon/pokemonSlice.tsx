@@ -5,7 +5,9 @@ interface PokemonsState {
   [key: string]: SimplePokemon;
 }
 
-const initialState: PokemonsState = {};
+const initialState: PokemonsState = {
+  ...JSON.parse(localStorage.getItem('favoritePokemons') || '{}')
+};
 
 const pokemonSlice = createSlice({
   name: 'pokemonsState',
@@ -17,10 +19,10 @@ const pokemonSlice = createSlice({
 
       if(!!state[id]) {
         delete state[id];
-        return;
+      }else {
+        state[id] = pokemon;
       }
-
-      state[id] = pokemon;
+      
     },
   }
   
